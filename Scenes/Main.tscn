@@ -1,26 +1,17 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Player.gd" type="Script" id=1]
-[ext_resource path="res://Assets/BallSprite.png" type="Texture" id=2]
+[ext_resource path="res://Assets/PlayerSprite.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Lane.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Lane.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Main.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Monster.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/BowlingBall.tscn" type="PackedScene" id=7]
 
 [node name="Main" type="Control"]
 script = ExtResource( 5 )
 lane_scene = ExtResource( 4 )
 monster_scene = ExtResource( 6 )
-
-[node name="Player" type="Node2D" parent="."]
-position = Vector2( 1500, 90 )
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Player"]
-texture = ExtResource( 2 )
 
 [node name="GridContainer" type="GridContainer" parent="."]
 margin_top = 15.0
@@ -57,3 +48,14 @@ margin_top = 600.0
 margin_right = 500.0
 margin_bottom = 700.0
 texture = ExtResource( 3 )
+
+[node name="Player" type="Node2D" parent="."]
+position = Vector2( 1500, 90 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+bowling_ball_scene = ExtResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="Player"]
+texture = ExtResource( 2 )

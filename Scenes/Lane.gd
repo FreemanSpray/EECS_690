@@ -17,7 +17,7 @@ func _ready():
 
 func get_pos(loc):
 	if loc == "mob":
-		return Vector2(0, 90 + 225*m_lane_id)
+		return Vector2(-50, 90 + 225*m_lane_id)
 	if loc == "player":
 		return Vector2(1500, 90 + 225*m_lane_id)
 	return Vector2(0, 0)

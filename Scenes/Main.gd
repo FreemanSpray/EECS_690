@@ -29,7 +29,6 @@ func get_random_lane():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	ticks+=1
-	print(ticks)
 	if ticks > 300:
 		ticks = 0
 		var monster = monster_scene.instance()

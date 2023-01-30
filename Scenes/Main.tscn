@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/PlayerSprite.png" type="Texture" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://Scenes/Main.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Monster.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/BowlingBall.tscn" type="PackedScene" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7, 547.5 )
 
 [node name="Main" type="Control"]
 script = ExtResource( 5 )
@@ -59,3 +62,9 @@ bowling_ball_scene = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="Player"]
 texture = ExtResource( 2 )
+
+[node name="Endzone" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Endzone"]
+position = Vector2( 1613, 541.5 )
+shape = SubResource( 1 )

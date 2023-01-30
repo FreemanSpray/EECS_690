@@ -30,7 +30,6 @@ func bowl():
 	var ctrl = get_parent()
 	var ball = bowling_ball_scene.instance()
 	var spawn_lane = m_lane
-	print(spawn_lane)
 	# subtract player position to get original frame coordinates 
 	# (comment is irrelevant now that we attach children to main instead of player)
 	var start_pos = ctrl.lanes[spawn_lane].get_pos("player")
@@ -47,10 +46,8 @@ func changeLane(direction):
 	if direction == "up":
 		if m_lane != 0:
 			m_lane-=1
-			print("up ->" + str(m_lane))
 			set("position", Vector2(1500, 15 + 50*1.5 + (100+50)*1.5*m_lane))
 	elif direction == "down":
 		if m_lane != 4:
 			m_lane+=1
-			print("down ->" + str(m_lane))
 			set("position", Vector2(1500, 15 + 50*1.5 + (100+50)*1.5*m_lane))

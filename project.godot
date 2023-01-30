@@ -14,6 +14,10 @@ config/name="Astrobowl"
 run/main_scene="res://Scenes/Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GlobalVars="*res://Scenes/Global.tscn"
+
 [display]
 
 window/size/width=1920

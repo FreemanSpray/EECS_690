@@ -1,0 +1,11 @@
+[gd_scene format=2]
+
+[node name="Control" type="Control"]
+
+[node name="GameOverScreen" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="PlayAgainButton" type="Button" parent="."]
+margin_right = 12.0
+margin_bottom = 20.0

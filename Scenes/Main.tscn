@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Scenes/Player.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/PlayerSprite.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Lane.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Lane.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Main.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Main.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Monster.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/BowlingBall.tscn" type="PackedScene" id=7]
 

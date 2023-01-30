@@ -1,18 +1,24 @@
-extends Node2D
+extends KinematicBody2D
 
-export (PackedScene) var bowling_ball_scene
+var blueBall = preload("res://Scenes/BlueBall.tscn")
+var greenBall = preload("res://Scenes/GreenBall.tscn")
+var orangeBall = preload("res://Scenes/OrangeBall.tscn")
+var purpleBall = preload("res://Scenes/PurpleBall.tscn")
 
-# Declare member variables here. Examples:
-var m_lane
-var m_lives
-var m_next_ball_id
-
+# Declare member variables here:
+var m_lane : int
+var m_lives : int
+var m_ballRndm
+var m_ballToThrow
+var rng
+onready var sprite : Sprite = get_node("Sprite")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	m_lane = 0
 	m_lives = 3
-	m_next_ball_id = 0
+	rng = RandomNumberGenerator.new()
+	rng.randomize()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,29 +31,42 @@ func _unhandled_input(event):
 		bowl()
 	# Mark input as handled so it won't trigger multiple times per keypress
 	get_tree().set_input_as_handled()
-
-func bowl():
-	var ctrl = get_parent()
-	var ball = bowling_ball_scene.instance()
-	var spawn_lane = m_lane
-	# subtract player position to get original frame coordinates 
-	# (comment is irrelevant now that we attach children to main instead of player)
-	var start_pos = ctrl.lanes[spawn_lane].get_pos("player")
-	var dest_pos = ctrl.lanes[spawn_lane].get_pos("mob")
-	ball.m_lane = spawn_lane
-	ball.m_ball_id = m_next_ball_id
-	ball.m_start_pos = start_pos
-	ball.m_dest_pos = dest_pos
-	m_next_ball_id+=1
-	ball.set("position", start_pos)
-	ctrl.add_child(ball)
 	
+	
+	
+func bowl():
+	#Randomizer to decide which ball to throw next
+	m_ballRndm = rng.randi_range(1, 100)
+	if m_ballRndm >=1 and m_ballRndm < 25:
+		m_ballToThrow = blueBall
+	elif m_ballRndm >=25 and m_ballRndm < 50:
+		m_ballToThrow = greenBall
+	elif m_ballRndm >=50 and m_ballRndm < 75:
+		m_ballToThrow = orangeBall
+	else:
+		m_ballToThrow = purpleBall
+		
+		
+	if m_lane == 0:
+		GlobalVars.newNode(m_ballToThrow, Vector2(self.position.x, self.position.y + 60), GlobalVars.m_parent, .85)
+	elif m_lane == 1:
+		GlobalVars.newNode(m_ballToThrow, Vector2(self.position.x, self.position.y + 60), GlobalVars.m_parent, .90)
+	elif m_lane == 2:
+		GlobalVars.newNode(m_ballToThrow, Vector2(self.position.x, self.position.y + 60), GlobalVars.m_parent, .95)
+	else:
+		GlobalVars.newNode(m_ballToThrow, Vector2(self.position.x, self.position.y + 60), GlobalVars.m_parent, 1)
+		
+
+
+
 func changeLane(direction):
 	if direction == "up":
-		if m_lane != 0:
+		if m_lane > 0:
 			m_lane-=1
-			set("position", Vector2(1500, 15 + 50*1.5 + (100+50)*1.5*m_lane))
+			set("position", Vector2(m_lane * 80 + 1350, 150 * m_lane + 400))
+			sprite.scale *= .90
 	elif direction == "down":
-		if m_lane != 4:
+		if m_lane < 3:
 			m_lane+=1
-			set("position", Vector2(1500, 15 + 50*1.5 + (100+50)*1.5*m_lane))
+			set("position", Vector2(m_lane * 80 + 1350, 150 * m_lane + 400))
+			sprite.scale /= .90

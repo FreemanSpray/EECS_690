@@ -1,70 +1,30 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Assets/PlayerSprite.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Lane.png" type="Texture" id=3]
-[ext_resource path="res://Scenes/Lane.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Barrier.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=5]
-[ext_resource path="res://Scenes/Monster.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/BowlingBall.tscn" type="PackedScene" id=7]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 7, 547.5 )
+[ext_resource path="res://Assets/Background/BKGD_Prog.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=9]
 
 [node name="Main" type="Control"]
 script = ExtResource( 5 )
-lane_scene = ExtResource( 4 )
-monster_scene = ExtResource( 6 )
 
-[node name="GridContainer" type="GridContainer" parent="."]
-margin_top = 15.0
-margin_right = 500.0
-margin_bottom = 715.0
-rect_scale = Vector2( 2.5, 1.5 )
-custom_constants/vseparation = 50
+[node name="BkgdProg" type="Sprite" parent="."]
+position = Vector2( 960, 540 )
+texture = ExtResource( 8 )
 
-[node name="TextureRect" type="TextureRect" parent="GridContainer"]
-margin_right = 500.0
-margin_bottom = 100.0
-texture = ExtResource( 3 )
+[node name="Player" parent="." instance=ExtResource( 9 )]
+position = Vector2( 1555, 510 )
+collision/safe_margin = 0.001
 
-[node name="TextureRect2" type="TextureRect" parent="GridContainer"]
-margin_top = 150.0
-margin_right = 500.0
-margin_bottom = 250.0
-texture = ExtResource( 3 )
+[node name="Timer" type="Timer" parent="."]
+autostart = true
 
-[node name="TextureRect3" type="TextureRect" parent="GridContainer"]
-margin_top = 300.0
-margin_right = 500.0
-margin_bottom = 400.0
-texture = ExtResource( 3 )
+[node name="BallBarrier" parent="." instance=ExtResource( 1 )]
+position = Vector2( 10, 540 )
 
-[node name="TextureRect4" type="TextureRect" parent="GridContainer"]
-margin_top = 450.0
-margin_right = 500.0
-margin_bottom = 550.0
-texture = ExtResource( 3 )
+[node name="EnemyBarrier" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1500, 540 )
+rotation = -0.436332
+scale = Vector2( 1, 1.2 )
 
-[node name="TextureRect5" type="TextureRect" parent="GridContainer"]
-margin_top = 600.0
-margin_right = 500.0
-margin_bottom = 700.0
-texture = ExtResource( 3 )
-
-[node name="Player" type="Node2D" parent="."]
-position = Vector2( 1500, 90 )
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
-bowling_ball_scene = ExtResource( 7 )
-
-[node name="Sprite" type="Sprite" parent="Player"]
-texture = ExtResource( 2 )
-
-[node name="Endzone" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Endzone"]
-position = Vector2( 1613, 541.5 )
-shape = SubResource( 1 )
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

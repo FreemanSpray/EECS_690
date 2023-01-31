@@ -14,7 +14,6 @@ func _ready():
 func _process(delta):
 	var collision = move_and_collide(speed*velocity*delta)
 	if collision:
-		print("got collision")
 		if collision.collider.name == "EnemyBarrier":
 			# Inflict damage on player's life total
 			GlobalVars._wasHit(1000)

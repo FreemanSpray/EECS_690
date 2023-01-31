@@ -13,4 +13,6 @@ func _ready():
 func _process(delta):
 	var collision = move_and_collide(speed*velocity*delta)
 	if collision:
-		queue_free()
+		if collision.collider.name == "BallBarrier":
+			# Despawn if it never hit a monster
+			queue_free()

@@ -4,7 +4,7 @@ extends KinematicBody2D
 #Variables
 var velocity = Vector2(1,0)
 var speed = 100
-var hp = 2
+var hp = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,6 +21,8 @@ func _process(delta):
 			queue_free()
 		else:
 			hp-=1
+			# Despawn ball that hit
+			collision.collider.queue_free()
 			if hp == 0:
 				# Despawn if out of HP
 				queue_free()

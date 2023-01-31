@@ -13,7 +13,7 @@ func _ready():
 
 func newNode(node, location, parent, scaleMult):
 	var newNode = node.instance()
-	parent.add_child(newNode)
+	$Hangar.add_child(newNode)
 	newNode.global_position = location
 	newNode.scale *= scaleMult
 	return newNode

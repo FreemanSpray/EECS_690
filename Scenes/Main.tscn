@@ -1,16 +1,26 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Barrier.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Background/Briauna_BKGD_Guts.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Background/Briauna_BKGD_Rocksl.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Background/Briauna_BKGD_SpaceColor.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=5]
-[ext_resource path="res://Assets/Background/BKGD_Prog.png" type="Texture" id=8]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=9]
 
 [node name="Main" type="Control"]
 script = ExtResource( 5 )
 
-[node name="BkgdProg" type="Sprite" parent="."]
+[node name="BackGround" type="Sprite" parent="."]
 position = Vector2( 960, 540 )
-texture = ExtResource( 8 )
+texture = ExtResource( 4 )
+
+[node name="MidGround" type="Sprite" parent="."]
+position = Vector2( 960, 540 )
+texture = ExtResource( 2 )
+
+[node name="ForeGround" type="Sprite" parent="."]
+position = Vector2( 960, 540 )
+texture = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 9 )]
 position = Vector2( 1555, 510 )

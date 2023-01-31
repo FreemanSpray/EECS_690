@@ -10,6 +10,7 @@ var m_lane : int
 var m_lives : int
 var m_ballRndm
 var m_ballToThrow
+var m_throw_cooldown = 0
 var rng
 onready var sprite : Sprite = get_node("Sprite")
 
@@ -28,7 +29,8 @@ func _unhandled_input(event):
 	elif event.is_action_pressed("ui_down"):
 		changeLane("down")
 	elif event.is_action_pressed("ui_accept"):
-		bowl()
+		if m_throw_cooldown == 0:
+			bowl()
 	# Mark input as handled so it won't trigger multiple times per keypress
 	get_tree().set_input_as_handled()
 	
@@ -45,6 +47,7 @@ func bowl():
 		m_ballToThrow = orangeBall
 	else:
 		m_ballToThrow = purpleBall
+	m_throw_cooldown = 30
 		
 		
 	if m_lane == 0:
@@ -70,3 +73,8 @@ func changeLane(direction):
 			m_lane+=1
 			set("position", Vector2(m_lane * 80 + 1350, 150 * m_lane + 400))
 			sprite.scale /= .90
+
+func _process(_delta):
+	if m_throw_cooldown > 0:
+		m_throw_cooldown-=1
+		

@@ -12,7 +12,7 @@ var m_ballRndm
 var m_ballToThrow
 var m_throw_cooldown = 0
 var rng
-onready var sprite : Sprite = get_node("Sprite")
+onready var _animated_sprite = get_node("Sprite")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -67,14 +67,15 @@ func changeLane(direction):
 		if m_lane > 0:
 			m_lane-=1
 			set("position", Vector2(m_lane * 80 + 1350, 150 * m_lane + 400))
-			sprite.scale *= .90
+			_animated_sprite.scale *= .90
 	elif direction == "down":
 		if m_lane < 3:
 			m_lane+=1
 			set("position", Vector2(m_lane * 80 + 1350, 150 * m_lane + 400))
-			sprite.scale /= .90
+			_animated_sprite.scale /= .90
 
 func _process(_delta):
+	_animated_sprite.play("default")
 	if m_throw_cooldown > 0:
 		m_throw_cooldown-=1
 		

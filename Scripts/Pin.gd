@@ -21,8 +21,10 @@ func _process(delta):
 			queue_free()
 		else:
 			hp-=1
+			# Despawn ball that hit
+			collision.collider.queue_free()
 			if hp == 0:
-				# Despawn ball that hit
-				collision.collider.queue_free()
+				# add points
+				GlobalVars._score+=500
 				# Despawn if out of HP
 				queue_free()

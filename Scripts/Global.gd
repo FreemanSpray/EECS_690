@@ -5,6 +5,7 @@ var m_lives = 3
 var m_health = 1000
 var m_parent = null
 var m_difficulty = 0
+var _score = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -26,6 +27,7 @@ func _wasHit(damageTaken):
 		
 	if m_lives == 0:
 		get_tree().change_scene("res://Scenes/GameOver.tscn")
+		print(GlobalVars._score)
 		queue_free()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

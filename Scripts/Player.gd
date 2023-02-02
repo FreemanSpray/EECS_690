@@ -22,7 +22,7 @@ func _ready():
 	rng.randomize()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Called when unhandled input is detected
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_up"):
 		changeLane("up")

@@ -12,7 +12,7 @@ var _score = 0
 func _ready():
 	pass # Replace with function body.
 
-func newNode(node, location, parent, scaleMult):
+func newNode(node, location, _parent, scaleMult):
 	var newNode = node.instance()
 	$Hangar.add_child(newNode)
 	newNode.global_position = location
@@ -26,9 +26,8 @@ func _wasHit(damageTaken):
 		m_lives -= 1
 		
 	if m_lives == 0:
-		get_tree().change_scene("res://Scenes/GameOver.tscn")
 		save_score()
-		queue_free()
+		get_tree().change_scene("res://Scenes/GameOver.tscn")
 
 func save_score():
 	print(GlobalVars._score)
@@ -87,8 +86,8 @@ func load_scores():
 			scores.append(0)
 		else:
 			scores.append(int(scores_str[i]))
-	print("high scores:" + str(scores))
 	file.close()
+	return scores
 	
 # Only used for debugging / resetting scores before release. Not for use in-game.	
 func reset_scores():

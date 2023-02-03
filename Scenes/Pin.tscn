@@ -1,7 +1,25 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Assets/Enemies/PinEnemy.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Enemies/Glowing Pin Sprites.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Pin.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 800, 800 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 800, 0, 800, 800 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -10,9 +28,9 @@ collision_layer = 2
 collision/safe_margin = 0.001
 script = ExtResource( 2 )
 
-[node name="PinEnemy" type="Sprite" parent="."]
+[node name="PinEnemy" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.15, 0.15 )
-texture = ExtResource( 1 )
+frames = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2( 2.4, 5.5 )

@@ -22,7 +22,6 @@ func _ready():
 
 # Called when unhandled input is detected
 func _unhandled_input(event):
-	print(event)
 	if event.is_action_pressed("ui_cancel"):
 		# Quit game
 		get_tree().quit()

@@ -29,7 +29,6 @@ func _process(delta):
 			if hp == 0:
 				# add points
 				GlobalVars._score+=2000
-				GlobalVars._wasHit(-10)
 				# Despawn if out of HP
 				queue_free()
 				#Adding Smaller Enemies

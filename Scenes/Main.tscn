@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Barrier.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Assets/Background/Briauna_BKGD_Guts.png" type="Texture" id=2]
 [ext_resource path="res://Assets/main theme(neon nights).wav" type="AudioStream" id=3]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=9]
@@ -11,12 +10,6 @@ extents = Vector2( 18, 551.5 )
 
 [node name="Main" type="Control"]
 script = ExtResource( 5 )
-
-[node name="TextureRect" type="TextureRect" parent="."]
-visible = false
-margin_right = 40.0
-margin_bottom = 40.0
-texture = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 9 )]
 position = Vector2( 1350, 400 )

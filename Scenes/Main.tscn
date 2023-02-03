@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Barrier.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Background/Briauna_BKGD_Guts.png" type="Texture" id=2]
+[ext_resource path="res://Assets/main theme(neon nights).wav" type="AudioStream" id=3]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=9]
 
@@ -22,6 +23,7 @@ position = Vector2( 1555, 510 )
 collision/safe_margin = 0.001
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
 autostart = true
 
 [node name="EnemyBarrier" parent="." instance=ExtResource( 1 )]
@@ -38,5 +40,8 @@ collision_mask = 4
 position = Vector2( 505.385, 514.893 )
 rotation = 0.244036
 shape = SubResource( 1 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

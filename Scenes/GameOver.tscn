@@ -1,14 +1,19 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/GameOver.gd" type="Script" id=1]
 [ext_resource path="res://Assets/End Screen_NoType.png" type="Texture" id=2]
 [ext_resource path="res://Assets/PressStart2P-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Assets/Cursor.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 72
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
+size = 72
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
 size = 72
 font_data = ExtResource( 3 )
 
@@ -85,3 +90,38 @@ custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
 bbcode_text = "[right]0000000[/right]"
 text = "0000000"
+
+[node name="LetterSelector1" type="RichTextLabel" parent="."]
+margin_left = 350.0
+margin_top = 315.0
+margin_right = 427.0
+margin_bottom = 395.0
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_fonts/normal_font = SubResource( 3 )
+text = "A"
+
+[node name="LetterSelector2" type="RichTextLabel" parent="."]
+margin_left = 430.0
+margin_top = 315.0
+margin_right = 507.0
+margin_bottom = 395.0
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_fonts/normal_font = SubResource( 3 )
+text = "A"
+
+[node name="LetterSelector3" type="RichTextLabel" parent="."]
+margin_left = 510.0
+margin_top = 315.0
+margin_right = 587.0
+margin_bottom = 395.0
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_fonts/normal_font = SubResource( 3 )
+text = "A"
+
+[node name="Cursor" type="TextureRect" parent="."]
+margin_left = 350.0
+margin_top = 315.0
+margin_right = 638.0
+margin_bottom = 603.0
+rect_scale = Vector2( 0.22, 0.22 )
+texture = ExtResource( 4 )

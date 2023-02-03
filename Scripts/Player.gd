@@ -29,7 +29,8 @@ func _unhandled_input(event):
 	elif event.is_action_pressed("ui_down"):
 		changeLane("down")
 	elif event.is_action_pressed("ui_accept"):
-			m_throw_pending = 75
+			if m_throw_pending == 0:
+				m_throw_pending = 75
 	# Mark input as handled so it won't trigger multiple times per keypress
 	get_tree().set_input_as_handled()
 	

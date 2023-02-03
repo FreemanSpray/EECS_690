@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+var enemy_pin = preload("res://Scenes/Pin.tscn")
+var explosion = preload("res://Scenes/Explosion.tscn")
 
 #Variables
 var velocity = Vector2(1,0)
@@ -18,6 +20,7 @@ func _process(delta):
 			# Inflict damage on player's life total
 			GlobalVars._wasHit(1000)
 			# Despawn
+			GlobalVars.newNode(explosion, self.position, GlobalVars.m_parent, 1)
 			queue_free()
 		else:
 			hp-=1
@@ -26,5 +29,10 @@ func _process(delta):
 			if hp == 0:
 				# add points
 				GlobalVars._score+=2000
+				GlobalVars._wasHit(-10)
 				# Despawn if out of HP
+				queue_free()
+				#Adding Smaller Enemies
+				GlobalVars.newNode(enemy_pin, self.position, GlobalVars.m_parent, self.scale * .5)
+				GlobalVars.newNode(enemy_pin, self.position, GlobalVars.m_parent, self.scale * .5)
 				queue_free()

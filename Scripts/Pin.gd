@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+var explosion = preload("res://Scenes/Explosion.tscn")
 
 #Variables
 var velocity = Vector2(1,0)
@@ -19,7 +20,9 @@ func _process(delta):
 	if collision:
 		if collision.collider.name == "EnemyBarrier":
 			# Inflict damage on player's life total
+			#if self.scale.x > .5:
 			GlobalVars._wasHit(1000)
+			GlobalVars.newNode(explosion, self.position, GlobalVars.m_parent, 1)
 			# Despawn
 			queue_free()
 		else:

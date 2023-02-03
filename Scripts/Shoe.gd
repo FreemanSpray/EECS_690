@@ -1,10 +1,13 @@
 extends KinematicBody2D
 
+var explosion = preload("res://Scenes/Explosion.tscn")
 
 #Variables
 var velocity = Vector2(1,0)
 var speed = 30
 var hp = 3
+
+onready var _animated_sprite = $ShoeEnemy
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,11 +15,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	_animated_sprite.play("default")
 	var collision = move_and_collide(speed*velocity*delta)
 	if collision:
 		if collision.collider.name == "EnemyBarrier":
 			# Inflict damage on player's life total
 			GlobalVars._wasHit(1000)
+			GlobalVars.newNode(explosion, self.position, GlobalVars.m_parent, 1)
 			# Despawn
 			queue_free()
 		else:

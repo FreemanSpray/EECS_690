@@ -16,3 +16,9 @@ texture = ExtResource( 2 )
 [node name="ForeGround" type="Sprite" parent="."]
 position = Vector2( 960, 540 )
 texture = ExtResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

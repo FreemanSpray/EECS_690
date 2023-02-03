@@ -23,26 +23,26 @@ func _ready():
 # Called when unhandled input is detected
 func _unhandled_input(event):
 	print(event)
-	if event.is_action_pressed("ui_escape"):
+	if event.is_action_pressed("ui_cancel"):
 		# Quit game
 		get_tree().quit()
-	if event.is_action_pressed("ui_accept"):
-		# Quit game
+	elif event.is_action_pressed("ui_accept"):
+		# Quit game to avoid crash
 		get_tree().quit()
 		# Reset and play again (WIP)
 		GlobalVars.m_lives = 3
 		GlobalVars.m_health = 1000
 		GlobalVars._score = 0
 		get_tree().change_scene("res://Scenes/Main.tscn")
-	if event.is_action_pressed("ui_up"):
+	elif event.is_action_pressed("ui_up"):
 		adjust_letter("up")
-	if event.is_action_pressed("ui_down"):
+	elif event.is_action_pressed("ui_down"):
 		adjust_letter("down")
-	if event.is_action_pressed("ui_left"):
+	elif event.is_action_pressed("ui_left"):
 		if current_selector != 0:
 			current_selector-=1
 			$Cursor.set("rect_position", Vector2($Cursor.get("rect_position").x - 80, $Cursor.get("rect_position").y))
-	if event.is_action_pressed("ui_right"):
+	elif event.is_action_pressed("ui_right"):
 		if current_selector != 2:
 			current_selector+=1
 			$Cursor.set("rect_position", Vector2($Cursor.get("rect_position").x + 80, $Cursor.get("rect_position").y))

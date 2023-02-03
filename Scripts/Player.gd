@@ -10,7 +10,7 @@ var m_lane : int
 var m_lives : int
 var m_ballRndm
 var m_ballToThrow
-var m_throw_cooldown = 0
+var m_throw_pending = 0
 var rng
 onready var _animated_sprite = get_node("Sprite")
 
@@ -29,8 +29,7 @@ func _unhandled_input(event):
 	elif event.is_action_pressed("ui_down"):
 		changeLane("down")
 	elif event.is_action_pressed("ui_accept"):
-		if m_throw_cooldown == 0:
-			bowl()
+			m_throw_pending = 75
 	# Mark input as handled so it won't trigger multiple times per keypress
 	get_tree().set_input_as_handled()
 	
@@ -47,7 +46,6 @@ func bowl():
 		m_ballToThrow = orangeBall
 	else:
 		m_ballToThrow = purpleBall
-	m_throw_cooldown = 30
 		
 		
 	if m_lane == 0:
@@ -75,7 +73,11 @@ func changeLane(direction):
 			_animated_sprite.scale /= .90
 
 func _process(_delta):
-	_animated_sprite.play("default")
-	if m_throw_cooldown > 0:
-		m_throw_cooldown-=1
+	if m_throw_pending == 45:
+		bowl()
+	if m_throw_pending > 0:
+		m_throw_pending-=1
+		_animated_sprite.play("bowling")
+	else: 
+		_animated_sprite.play("default")
 		

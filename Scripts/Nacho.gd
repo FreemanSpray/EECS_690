@@ -3,7 +3,7 @@ extends KinematicBody2D
 
 #Variables
 var velocity = Vector2(1,0)
-var speed = 100
+var speed = 60
 var hp = 1
 
 onready var _animated_sprite = $NachoEnemy

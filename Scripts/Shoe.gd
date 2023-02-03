@@ -3,7 +3,7 @@ extends KinematicBody2D
 
 #Variables
 var velocity = Vector2(1,0)
-var speed = 100
+var speed = 40
 var hp = 3
 
 # Called when the node enters the scene tree for the first time.
